@@ -1,0 +1,48 @@
+import { useState } from 'react'
+import './ag-grid-crack'
+
+import { AgGridReact } from 'ag-grid-react' // React Data Grid Component
+
+function App() {
+  const [rowData, setRowData] = useState([
+    { make: 'Toyota', model: 'Celica', price: 35000 },
+    { make: 'Ford', model: 'Mondeo', price: 32000 },
+    { make: 'Porsche', model: 'Boxster', price: 72000 },
+  ])
+
+  const [colDefs, setColDefs] = useState([
+    { field: 'make' },
+    { field: 'model' },
+    { field: 'price' },
+  ])
+
+  const [defaultColDef, setDefaultColDef] = useState({
+    flex: 1,
+  })
+
+  const [statusBar, setStatusBar] = useState({
+    statusPanels: [
+      {
+        statusPanel: 'agTotalAndFilteredRowCountComponent',
+        align: 'left',
+      },
+    ],
+  })
+
+  return (
+    <>
+      <div
+        style={{ height: '100%', width: '100%' }} // the grid will fill the size of the parent container
+      >
+        <AgGridReact
+          rowData={rowData}
+          columnDefs={colDefs}
+          defaultColDef={defaultColDef}
+          statusBar={statusBar}
+        />
+      </div>
+    </>
+  )
+}
+
+export default App
